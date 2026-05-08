@@ -100,7 +100,6 @@ Responsible for:
 - defining main and secondary topics,
 - generating research strategy.
 
----
 
 ## 2. Topic Researcher
 Responsible for:
@@ -113,7 +112,6 @@ Responsible for:
 - Exa Search Tool
 - Website Scraper
 
----
 
 ## 3. Fact Checker
 Responsible for:
@@ -122,7 +120,6 @@ Responsible for:
 - validating source credibility,
 - ensuring research quality.
 
----
 
 ## 4. Report Writer
 Responsible for:
@@ -139,12 +136,10 @@ The system analyzes whether the query is:
 - SIMPLE
 - or RESEARCH-level.
 
----
 
 ## Step 2 — Clarification
 If the query is ambiguous, the system asks follow-up questions.
 
----
 
 ## Step 3 — Research Planning
 The planner agent creates:
@@ -153,14 +148,12 @@ The planner agent creates:
 - research priorities,
 - key research questions.
 
----
 
 ## Step 4 — Parallel Research
 Two asynchronous research pipelines execute simultaneously:
 - Main topic research
 - Secondary topic research
 
----
 
 ## Step 5 — Validation
 Fact-checking agents validate:
@@ -169,7 +162,6 @@ Fact-checking agents validate:
 - source credibility,
 - unsupported claims.
 
----
 
 ## Step 6 — Report Generation
 The report writer synthesizes all validated information into:
