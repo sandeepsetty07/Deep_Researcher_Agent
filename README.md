@@ -1,54 +1,110 @@
-# DeepResearchAgent Crew
+# Deep Researcher Agent
 
-Welcome to the DeepResearchAgent Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+An AI-powered multi-agent deep research system built using CrewAI, OpenAI models, Exa Search, and web scraping tools.  
 
-## Installation
+This project automatically analyzes user queries, determines whether deep research is required, performs parallelized internet research using multiple AI agents, validates the collected information, and generates a structured research report with citations.
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+---
 
-First, if you haven't already, install uv:
+# Project Overview
 
-```bash
-pip install uv
-```
+Traditional LLM responses often struggle with:
+- hallucinations
+- outdated information
+- lack of source validation
+- shallow answers for complex topics
 
-Next, navigate to your project directory and install the dependencies:
+This project solves that problem by building a modular **multi-agent research workflow** capable of:
+- planning research strategically
+- performing parallel topic investigation
+- validating facts from multiple sources
+- generating structured reports with citations
+- maintaining memory and persistence across research sessions
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
+The system mimics how a real-world research team operates:
+1. A planner defines the research strategy
+2. Researchers collect information
+3. Fact-checkers validate findings
+4. A report writer generates the final report
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+---
 
-- Modify `src/deep_research_agent/config/agents.yaml` to define your agents
-- Modify `src/deep_research_agent/config/tasks.yaml` to define your tasks
-- Modify `src/deep_research_agent/crew.py` to add your own logic, tools and specific args
-- Modify `src/deep_research_agent/main.py` to add custom inputs for your agents and tasks
+# Key Features
 
-## Running the Project
+## Multi-Agent Architecture
+Uses specialized AI agents with distinct responsibilities:
+- Research Planner
+- Topic Researcher
+- Fact Checker
+- Report Writer
 
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+---
 
-```bash
-$ crewai run
-```
+## Intelligent Query Routing
+The system first determines whether a query requires:
+- a simple direct response
+OR
+- a full deep-research pipeline
 
-This command initializes the Deep_Research_Agent Crew, assembling the agents and assigning them tasks as defined in your configuration.
+This reduces unnecessary computation and improves efficiency.
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+---
 
-## Understanding Your Crew
+## Parallel Research Execution
+Research on MAIN topics and SECONDARY topics runs asynchronously for faster execution.
 
-The Deep_Research_Agent Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+---
 
-## Support
+## Fact Validation Layer
+Collected research is validated to:
+- reduce hallucinations
+- detect inconsistencies
+- cross-check information
+- improve source reliability
 
-For support, questions, or feedback regarding the DeepResearchAgent Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+---
 
-Let's create wonders together with the power and simplicity of crewAI.
+## Automated Report Generation
+Generates structured markdown reports containing:
+- executive summaries
+- detailed findings
+- citations
+- recommendations
+- insights
+
+---
+
+## Persistent Memory
+Uses CrewAI Flow persistence and knowledge sources to maintain context between sessions.
+
+---
+
+# Architecture
+
+```text
+User Query
+    │
+    ▼
+Query Analyzer (Router)
+    │
+ ┌──┴─────────────┐
+ │                │
+ ▼                ▼
+Simple Answer   Deep Research Pipeline
+                     │
+                     ▼
+            Research Planner Agent
+                     │
+        ┌────────────┴────────────┐
+        ▼                         ▼
+ MAIN Topic Research      SECONDARY Topic Research
+        │                         │
+        ▼                         ▼
+ MAIN Fact Validation    SECONDARY Fact Validation
+        │                         │
+        └────────────┬────────────┘
+                     ▼
+              Report Writer Agent
+                     │
+                     ▼
+              Final Research Report
