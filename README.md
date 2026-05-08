@@ -58,6 +58,7 @@ Fact Checker  Fact Checker
       └──────┬───────┘
              ▼
       Report Writer
+```
 
 ---
 
